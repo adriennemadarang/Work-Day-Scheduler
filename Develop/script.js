@@ -1,15 +1,19 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-// displays current date below title
-var unixFormat = dayjs().format('MMM D, YYYY, hh:mm:ss a');
-$('#currentDay').html(unixFormat)
 
-// displays current hour
-var currentHour 
+// displays current date below title
+var currentDay = $('#currentDay');
+// saves current hour
+var currentHour = dayjs().format("H");
+
+// displays current date and time
+currentDay.text(dayjs().format("MMM D YYYY h[:]mm"))
+
+
 
 $(document).ready(function () {
-  
+
   //  save button click listener
   $(".saveBtn").on("click", function () {
     var text = $(this).siblings("description").val();
@@ -19,6 +23,28 @@ $(document).ready(function () {
     localStorage.setItem(time, text);
   })
 
+  function trackTime() { 
+    $(".time-block").each(function () {
+      var timeBlock = parseInt($(this).attr('id'));
+
+      // checks time and adds past, present, future class
+    if (timeBlock < currentHour) {
+      $(this).removeClass("future");
+      $(this).removeClass("present");
+      $(this).addClass("past");
+    }
+    else if (timeBlock === currentHour) {
+      $(this).removeClass("past");
+      $(this).removeClass("future");
+      $(this).addClass("present");
+    }
+    else {
+      $(this).removeClass("present");
+      $(this).removeClass("past");
+      $(this).addClass("future");
+    }
+    })
+  }
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
