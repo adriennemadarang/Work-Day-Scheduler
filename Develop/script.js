@@ -1,42 +1,45 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
-// displays current date below title
+// Displays current date and time under title
 var currentDay = $('#currentDay');
 currentDay.text(dayjs().format("dddd, MMM D h[:]mm"))
 
 // saves current hour
 var currentHour = dayjs().format("H");
-// check to see if current hour is current
-console.log(currentHour);
 
+// check to see if current hour is current
+// console.log(currentHour);
 
 $(document).ready(function () {
 
-  //  save button click listener
+  //  Save button click listener
   $(".saveBtn").on("click", function () {
-    var text = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id");
-    // console.log(time)
-    // console.log(text)
 
-    // saves text to local storage
-    localStorage.setItem(time, text);
+    var text = $(this).siblings(".description").val();
+    var hour = $(this).parent().attr("id");
+
+    console.log(hour)
+    console.log(text)
+
+    // Saves hour and description text to localStorage
+    localStorage.setItem(hour, text);
+
   })
 
 
   function trackTime() {
     $(".time-block").each(function () {
-      var timeBlock = parseInt($(this).attr('id'));
 
-      // checks hour and adds past, present, future class
+      var timeBlock = parseInt($(this).attr('id').split("hour")[1]);
+      
+      // checks to see if hour logs out
+      // console.log(timeBlock);
+
+      // Checks hour and adds past, present, or future class color background
       if (timeBlock < currentHour) {
         $(this).addClass("past");
         $(this).removeClass("future");
         $(this).removeClass("present");
       }
-      else if (timeBlock === currentHour) {
+      else if (timeBlock == currentHour) {
         $(this).addClass("present");
         $(this).removeClass("past");
         $(this).removeClass("future");
@@ -47,20 +50,22 @@ $(document).ready(function () {
         $(this).removeClass("past");
       }
     })
+
   }
-  
-  trackTime();
+
+trackTime();
 })
 
-$("#hour-9 .description").val(localStorage.getItem(hour-9))
-$("#hour-10 .description").val(localStorage.getItem(hour-10))
-$("#hour-11 .description").val(localStorage.getItem(hour-11))
-$("#hour-12 .description").val(localStorage.getItem(hour-12))
-$("#hour-13 .description").val(localStorage.getItem(hour-13))
-$("#hour-14 .description").val(localStorage.getItem(hour-14))
-$("#hour-15 .description").val(localStorage.getItem(hour-15))
-$("#hour-16 .description").val(localStorage.getItem(hour-16))
-$("#hour-17 .description").val(localStorage.getItem(hour-17))
+// Gets item from localStorage
+$("#hour9 .description").val(localStorage.getItem(hour9))
+$("#hour10 .description").val(localStorage.getItem(hour10))
+$("#hour11 .description").val(localStorage.getItem(hour11))
+$("#hour12 .description").val(localStorage.getItem(hour12))
+$("#hour13 .description").val(localStorage.getItem(hour13))
+$("#hour14 .description").val(localStorage.getItem(hour14))
+$("#hour15 .description").val(localStorage.getItem(hour15))
+$("#hour16 .description").val(localStorage.getItem(hour16))
+$("#hour17 .description").val(localStorage.getItem(hour17))
 
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -80,4 +85,4 @@ $("#hour-17 .description").val(localStorage.getItem(hour-17))
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
+  // TODO: Add code to display the current date in the header of the page
