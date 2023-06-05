@@ -24,5 +24,7 @@ WHEN I refresh the page<br>
 THEN the saved events persist<br>
 
 ## Deployed Link
+https://adriennemadarang.github.io/Work-Day-Scheduler/
 
 ## Screenshots
+<img width="1399" alt="Screen Shot 2023-06-05 at 11 38 39 AM" src="https://github.com/adriennemadarang/Work-Day-Scheduler/assets/128556908/f5f0e25e-f409-4a0b-b258-314482c3a1b7">
