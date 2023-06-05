@@ -29,8 +29,8 @@ $(document).ready(function () {
     $(".time-block").each(function () {
 
       var timeBlock = parseInt($(this).attr('id').split("hour")[1]);
-      
-      // checks to see if hour logs out
+
+      // checks to see if currrent hour logs out
       // console.log(timeBlock);
 
       // Checks hour and adds past, present, or future class color background
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
   }
 
-trackTime();
+  trackTime();
 })
 
 // Gets item from localStorage
