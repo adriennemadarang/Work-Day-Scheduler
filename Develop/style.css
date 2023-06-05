@@ -1,6 +1,10 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+  text-align: center;
+}
+h1 {
+  font-weight: bolder;
 }
 
 textarea {
@@ -11,6 +15,7 @@ textarea {
   border-left: 1px solid black;
   padding: 10px;
 }
+
 
 .description {
   white-space: pre-wrap;
